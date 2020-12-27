@@ -1,9 +1,9 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { deleteLocalFiles, filterImageFromURL } from "../../util/util";
 
-const router = Router();
+const router: Router = Router();
 
-router.get("/", async (req: Request, res: Response, next: NextFunction) => {
+router.get("/", async (req: Request, res: Response) => {
   const { image_url } = req.query;
 
   // Send error if image_url wasnt informed
@@ -12,7 +12,7 @@ router.get("/", async (req: Request, res: Response, next: NextFunction) => {
   }
 
   //Filter image
-  const image = await filterImageFromURL(image_url as string);
+  const image: string = await filterImageFromURL(image_url as string);
 
   // If image wasn't found return image not found message
   if (!image) {
